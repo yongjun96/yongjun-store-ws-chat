@@ -19,18 +19,22 @@ public class ChatController {
 
     private final ChatService chatService;
 
+    // @MessageMapping() : 클라이언트가 서버로 메세지 전송할 때 사용
+    // @SendTo() : 메소드의 반환 값을 전송
+
+
     // 일반 메시지 매핑
     @MessageMapping("/chat")
-    @SendTo("/sub/chat")
+    @SendTo("/chat")
     public Mono<Chat> sendMessage(ChatRequest chatRequest) {
 
         return chatService.sendMessage(chatRequest);
     }
 
-    @MessageMapping("/chat/{roomNum}")
-    @SendTo("/sub/chat/{roomNum}")
-    public Flux<Chat> getChatRoom(@PathVariable String roomNum){
+    @MessageMapping("/chat/{chatRoomId}")
+    @SendTo("/chat/{chatRoomId}")
+    public Flux<Chat> getChatRoom(@PathVariable Long chatRoomId){
 
-        return chatService.getChatRoom(roomNum);
+        return chatService.getChatRoom(chatRoomId);
     }
 }

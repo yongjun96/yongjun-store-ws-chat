@@ -23,17 +23,18 @@ public class ChatService {
         Chat chat = Chat.builder()
                 .msg(chatRequest.getMsg())
                 .sender(chatRequest.getSender())
-                .createAt(LocalDateTime.now())
-                .roomNum(chatRequest.getRoomNum())
+                .createAt(LocalDateTime.now()) // 현재 시간 입력
+                .chatRoomId(chatRequest.getChatRoomId())
+                .chatRoomName(chatRequest.getChatRoomName())
                 .build();
 
         return chatRepository.save(chat);
 
     }
 
-    public Flux<Chat> getChatRoom(String roomNum){
+    public Flux<Chat> getChatRoom(Long chatRoomId){
 
-        return chatRepository.mFindByRoomNum(roomNum)
+        return chatRepository.mFindByRoomNum(chatRoomId)
                 .subscribeOn(Schedulers.boundedElastic());
     }
 }
