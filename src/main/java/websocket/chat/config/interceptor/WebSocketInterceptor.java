@@ -1,8 +1,6 @@
 package websocket.chat.config.interceptor;
 
-import jakarta.security.auth.message.AuthException;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.simp.stomp.StompCommand;
