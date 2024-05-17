@@ -19,6 +19,7 @@ public class WebSocketInterceptor implements ChannelInterceptor {
 
     private final JwtProvider jwtProvider;
 
+    // 토큰 체크
     //@SneakyThrows
     @Override
     public Message<?> preSend(Message<?> message, MessageChannel channel) {
